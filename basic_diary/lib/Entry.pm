@@ -5,7 +5,7 @@ use feature qw(state);
 
 sub new {
     my ($class, %args) = @_;
-    stock_entry(%args);
+    manage_entries(%args);
     return bless \%args, $class;
 }
 
@@ -14,19 +14,24 @@ sub name {
     return $class->{title};
 }
 
-sub get {
+sub get_entries {
     my $class = shift;
-    return bless [stock_entry()], $class;
+    return bless [manage_entries()], $class;
 }
 
-sub stock_entry {
+sub manage_entries {
     state @entries;
     if (@_) {
         my %args = @_;
         push @entries, \%args;
     } else {
-        return reverse @entries;
+        return_entries(@entries);
     }
+}
+
+sub return_entries {
+    my @entries = @_;
+    return reverse @entries;
 }
 
 1;

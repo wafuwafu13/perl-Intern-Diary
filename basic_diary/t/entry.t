@@ -8,8 +8,8 @@ use_ok 'Entry';
 
 ok( defined &Entry::new );
 ok( defined &Entry::name );
-ok( defined &Entry::get );
-ok( defined &Entry::stock_entry );
+ok( defined &Entry::get_entries );
+ok( defined &Entry::manage_entries );
 
 my $user = User->new(name => 'John');
 

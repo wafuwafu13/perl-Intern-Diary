@@ -3,7 +3,6 @@ use strict;
 use warnings;
 use Entry;
 
-# name渡ってきてる
 sub new {
     my ($class, %args) = @_;
     return bless \%args, $class;
@@ -11,8 +10,7 @@ sub new {
 
 sub name {
     my $class = shift;
-    my $name = $class->{name};
-    return "$name\n";
+    return $class->{name};
 }
 
 sub add_entry {
@@ -22,7 +20,7 @@ sub add_entry {
 
 sub get_recent_entries {
     my $class = shift;
-    Entry->get;
+    Entry->get_entries;
 }
 
 1;
