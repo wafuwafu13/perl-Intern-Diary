@@ -2,8 +2,8 @@ CREATE TABLE user (
     `user_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(32) NOT NULL,
     `created` TIMESTAMP NOT NULL,
-    UNIQUE KEY (name),
     PRIMARY KEY (user_id),
+    UNIQUE KEY (name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE diary (
@@ -11,7 +11,7 @@ CREATE TABLE diary (
     `user` VARCHAR(32) NOT NULL,
     `name` VARCHAR(32) NOT NULL,
     `created` TIMESTAMP NOT NULL,
-    PRIMARY KEY (diary_id),
+    PRIMARY KEY (diary_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE entry (
@@ -26,5 +26,5 @@ CREATE TABLE entry (
       REFERENCES `diary` (`diary_id`)
       ON DELETE CASCADE
       ON UPDATE CASCADE,
-    PRIMARY KEY (entry_id),
+    PRIMARY KEY (entry_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
