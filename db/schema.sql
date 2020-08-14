@@ -8,7 +8,7 @@ CREATE TABLE user (
 
 CREATE TABLE diary (
     `diary_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `user_id` BIGINT UNSIGNED NOT NULL,
+    `user` VARCHAR(32) NOT NULL,
     `name` VARCHAR(32) NOT NULL,
     `created` TIMESTAMP NOT NULL,
     PRIMARY KEY (diary_id),
