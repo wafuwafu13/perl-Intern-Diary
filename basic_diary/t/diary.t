@@ -8,6 +8,7 @@ use_ok 'Diary';
 ok( defined &Diary::new );
 ok( defined &Diary::name );
 ok( defined &Diary::add_entry );
+ok( defined &Diary::stock_entries );
 ok( defined &Diary::get_recent_entries );
 
 my $user = User->new(

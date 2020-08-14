@@ -7,7 +7,7 @@ my $diary = $user1->add_diary(
     name   => 'John の日記です',
 );
 
-print $diary->name; # John の日記です
+print $diary->name . "\n"; # John の日記です
 
 # Entry クラスのインスタンスが返る
 my $entry1 = $diary->add_entry(
