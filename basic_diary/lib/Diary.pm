@@ -19,13 +19,13 @@ sub name {
 
 sub add_entry {
     my ($class, %args) = @_;
-    stock_entries($class->{name}, %args);
-    Entry->new(%args);
+    my $entry = Entry->new(%args);
+    stock_entries($class->{name}, $entry);
 }
 
 sub stock_entries {
-    my ($diary_name, %args) = @_;
-    push @{$entries{$diary_name}}, \%args;
+    my ($diary_name, $entry) = @_;
+    push @{$entries{$diary_name}}, $entry;
 }
 
 sub get_recent_entries {
