@@ -15,11 +15,13 @@ use DBIx::Sunny;
 use Intern::Diary::Config;
 use Intern::Diary::Service::User;
 use Intern::Diary::Service::Diary;
+use Intern::Diary::Service::Entry;
 
 BEGIN { $ENV{INTERN_DIARY_ENV} = 'local' };
 
 my %HANDLERS = (
     add_diary    => \&add_diary,
+    add_entry    => \&add_entry,
 );
 
 my $name    = shift @ARGV;
@@ -51,4 +53,20 @@ sub add_diary {
     });
 
     print 'Create diary'
+}
+
+sub add_entry {
+    my ($user, $diary_id, $title, $body) = @_;
+
+    die 'diary_name required' unless defined $diary_id;
+    die 'title required' unless defined $title;
+    die 'body required' unless defined $body;
+
+    my $entry = Intern::Diary::Service::Entry->add_entry($db, +{
+        diary_id => $diary_id,
+        title => $title,
+        body => $body,
+    });
+
+    print 'Add entry';
 }
