@@ -24,8 +24,7 @@ sub add_entry {
 }
 
 sub stock_entries {
-    my $diary_name = shift;
-    my %args = @_;
+    my ($diary_name, %args) = @_;
     push @{$entries{$diary_name}}, \%args;
 }
 
