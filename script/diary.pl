@@ -14,16 +14,16 @@ use DBIx::Sunny;
 
 use Intern::Diary::Config;
 use Intern::Diary::Service::User;
-# use Intern::Diary::Service::Diary;
+use Intern::Diary::Service::Diary;
 
 BEGIN { $ENV{INTERN_DIARY_ENV} = 'local' };
 
-# my %HANDLERS = (
-#     add    => \&add_bookmark,
-# );
+my %HANDLERS = (
+    add_diary    => \&add_diary,
+);
 
 my $name    = shift @ARGV;
-# my $command = shift @ARGV;
+my $command = shift @ARGV;
 
 my $db      = do {
     my $config = config->param('db')->{intern_diary};
@@ -35,4 +35,20 @@ unless ($user) {
     $user = Intern::Diary::Service::User->create($db, +{ name => $name });
 }
 
-print $user;
+my $handler = $HANDLERS{ $command } or pod2usage;
+$handler->($user, @ARGV);
+
+exit 0;
+
+sub add_diary {
+    my ($user, $name) = @_;
+
+    die 'name required' unless defined $name;
+
+    my $diary = Intern::Diary::Service::Diary->add_diary($db, +{
+        user => $user,
+        name => $name,
+    });
+
+    print 'Create diary'
+}
