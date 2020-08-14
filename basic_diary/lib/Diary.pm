@@ -31,8 +31,8 @@ sub stock_entries {
 sub get_recent_entries {
     my $class = shift;
     my $diary_name = $class->{name};
-    @{$entries{$diary_name}} = reverse @{$entries{$diary_name}};
-    return %entries{$diary_name};
+    my @result_entries = reverse @{$entries{$diary_name}};
+    return \@result_entries;
 }
 
 1;
