@@ -6,7 +6,7 @@ use Test::More;
 
 use_ok 'Entry';
 
-ok( defined &Entry::new );
+ok( defined &Entry::new, "newメソッドが定義されている" );
 
 my $user = User->new(name => 'John');
 
@@ -32,14 +32,14 @@ my $entry3 = $secret_diary->add_entry(
 );
 
 my $recent_entries = $diary->get_recent_entries;
-is $recent_entries->[0]->{title}, 'diary title 2';
-is $recent_entries->[0]->{body}, 'diary sentence 2';
-is $recent_entries->[1]->{title}, 'diary title 1';
-is $recent_entries->[1]->{body}, 'diary sentence 1';
-is $recent_entries->[2], undef;
+is $recent_entries->[0]->{title}, 'diary title 2', '正しい記事のタイトルを取得できる';
+is $recent_entries->[0]->{body}, 'diary sentence 2', '正しい記事の本文を取得できる';
+is $recent_entries->[1]->{title}, 'diary title 1', '正しい記事のタイトルを取得できる';
+is $recent_entries->[1]->{body}, 'diary sentence 1', '正しい記事の本文を取得できる';
+is scalar @$recent_entries, 2, '記事は2つである';
 
 my $recent_secret_entries = $secret_diary->get_recent_entries;
-is $recent_secret_entries->[0]->{title}, 'secret diary title';
-is $recent_secret_entries->[0]->{body}, 'secret diary sentence';
+is $recent_secret_entries->[0]->{title}, 'secret diary title', '異なる日記の正しい記事のタイトルを取得できる';
+is $recent_secret_entries->[0]->{body}, 'secret diary sentence', '異なる日記の正しい記事の本文を取得できる';
 
 done_testing();
