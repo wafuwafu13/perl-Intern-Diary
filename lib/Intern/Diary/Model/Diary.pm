@@ -5,9 +5,10 @@ use warnings;
 use utf8;
 
 use Class::Accessor::Lite (
-    ro => [qw(
+    rw => [qw(
         user
         name
+        diary_id
     )],
     new => 1,
 );

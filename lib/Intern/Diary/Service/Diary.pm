@@ -35,8 +35,10 @@ sub find_diaries_by_user {
     });
 
     my $rows = $db->select_all($sql, @$bind);
-
-    return $rows;
+   
+    return [ map {
+        Intern::Diary::Model::Diary->new($_);
+    } @$rows ]
 }
 
 1;
