@@ -12,6 +12,14 @@ sub make_router {
             engine => 'Index',
             action => 'default',
         };
+        connect '/add' => {
+            engine => 'Diary',
+            action => 'add_get',
+        } => { method => 'GET' };
+        connect '/add' => {
+            engine => 'Diary',
+            action => 'add_post',
+        } => { method => 'POST'}
     };
 }
 

@@ -13,7 +13,7 @@ use Intern::Diary::Model::Diary;
 sub add_diary {
     my ($class, $db, $args) = @_;
 
-    my $user = $args->{user}->{name} // croak 'user required';
+    my $user = $args->{user} // croak 'user required';
     my $name = $args->{name} // croak 'name required';
 
     $db->query(q[
