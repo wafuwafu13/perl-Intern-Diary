@@ -31,7 +31,7 @@ sub find_diaries_by_user {
         SELECT * FROM diary
         WHERE user = :name
     ], {
-        name => $user->{name}
+        name => $user->name
     });
 
     my $rows = $db->select_all($sql, @$bind);

@@ -65,7 +65,7 @@ sub list_diaries {
     });
 
     foreach my $diary (@$diaries) {
-        print $diary->{name} . "\n";
+        print $diary->name . "\n";
     }
 }
 
