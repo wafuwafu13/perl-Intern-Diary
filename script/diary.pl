@@ -21,6 +21,7 @@ BEGIN { $ENV{INTERN_DIARY_ENV} = 'local' };
 
 my %HANDLERS = (
     add_diary    => \&add_diary,
+    list_diaries   => \&list_diaries,
     add_entry    => \&add_entry,
     delete_entry => \&delete_entry,
 );
@@ -54,6 +55,18 @@ sub add_diary {
     });
 
     print 'Create diary';
+}
+
+sub list_diaries {
+    my ($user) = @_;
+
+    my $diaries = Intern::Diary::Service::Diary->find_diaries_by_user($db, +{
+        user => $user
+    });
+
+    foreach my $diary (@$diaries) {
+        print $diary->{name} . "\n";
+    }
 }
 
 sub add_entry {
