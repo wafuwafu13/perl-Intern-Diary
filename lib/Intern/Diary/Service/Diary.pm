@@ -37,8 +37,8 @@ sub find_diaries_by_user {
     my $rows = $db->select_all($sql, @$bind);
    
     return [ map {
-        Intern::Diary::Model::Diary->new($_);
-    } @$rows ]
+        Intern::Diary::Model::Diary->new($_)
+    } @$rows ];
 }
 
 1;
