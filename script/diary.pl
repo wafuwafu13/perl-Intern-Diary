@@ -53,7 +53,7 @@ sub add_diary {
         name => $name,
     });
 
-    print 'Create diary'
+    print 'Create diary';
 }
 
 sub add_entry {
