@@ -26,6 +26,13 @@ use Intern::Diary::Config;
 
 ### Properties
 
+sub user {
+    my ($self) = @_;
+    my $user = Intern::Diary::Service::User->find_user_by_name($self->dbh, {
+        name => 'wafuwafu',
+    });
+}
+
 sub from_env {
     my ($class, $env) = @_;
     return $class->new(env => $env);

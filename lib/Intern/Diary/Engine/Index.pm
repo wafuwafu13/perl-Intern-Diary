@@ -10,12 +10,8 @@ use Intern::Diary::Service::Diary;
 sub default {
     my ($class, $c) = @_;
 
-    my $user = Intern::Diary::Service::User->find_user_by_name($c->dbh, {
-        name => 'wafuwafu',
-    });
-
     my $diaries = Intern::Diary::Service::Diary->find_diaries_by_user($c->dbh, {
-        user => $user,
+        user => $c->user,
     });
 
     $c->html('index.html', {
