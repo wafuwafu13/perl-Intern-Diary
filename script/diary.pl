@@ -72,7 +72,7 @@ sub list_diaries {
 sub add_entry {
     my ($user, $diary_id, $title, $body) = @_;
 
-    die 'diary_name required' unless defined $diary_id;
+    die 'diary_id required' unless defined $diary_id;
     die 'title required' unless defined $title;
     die 'body required' unless defined $body;
 
@@ -88,7 +88,7 @@ sub add_entry {
 sub delete_entry {
     my ($user, $diary_id, $entry_id) = @_;
     
-    die 'diary_name required' unless defined $diary_id;
+    die 'diary_id required' unless defined $diary_id;
     die 'entry_id required' unless defined $entry_id;
 
     my $entry = Intern::Diary::Service::Entry->delete_entry($db, +{
