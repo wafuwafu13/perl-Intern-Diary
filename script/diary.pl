@@ -22,6 +22,7 @@ BEGIN { $ENV{INTERN_DIARY_ENV} = 'local' };
 my %HANDLERS = (
     add_diary    => \&add_diary,
     add_entry    => \&add_entry,
+    delete_entry => \&delete_entry,
 );
 
 my $name    = shift @ARGV;
@@ -69,4 +70,18 @@ sub add_entry {
     });
 
     print 'Add entry';
+}
+
+sub delete_entry {
+    my ($user, $diary_id, $entry_id) = @_;
+    
+    die 'diary_name required' unless defined $diary_id;
+    die 'entry_id required' unless defined $entry_id;
+
+    my $entry = Intern::Diary::Service::Entry->delete_entry($db, +{
+        diary_id => $diary_id,
+        entry_id => $entry_id,
+    });
+
+    print 'Delete entry';
 }

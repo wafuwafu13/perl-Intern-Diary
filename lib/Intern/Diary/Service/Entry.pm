@@ -21,4 +21,17 @@ sub add_entry {
     ], [ $diary_id, $title, $body, Intern::Diary::Util::now, Intern::Diary::Util::now ]);
 }
 
+sub delete_entry {
+    my ($class, $db, $args) = @_;
+
+    my $diary_id = $args->{diary_id} // croak 'diary_id required';
+    my $entry_id = $args->{entry_id} // croak 'diary_id required';
+
+    $db->query(q[
+        DELETE FROM entry
+          WHERE 
+            diary_id = ? AND entry_id = ?
+    ], $diary_id, $entry_id);
+}
+
 1;
