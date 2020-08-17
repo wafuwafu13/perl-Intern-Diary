@@ -41,4 +41,16 @@ sub find_diaries_by_user {
     } @$rows ];
 }
 
+sub delete_diary {
+    my ($class, $db, $args) = @_;
+
+    my $name = $args->{name} // croak 'name required';
+
+    $db->query(q[
+        DELETE FROM diary
+          WHERE 
+            name = ?
+    ], $name);
+}
+
 1;

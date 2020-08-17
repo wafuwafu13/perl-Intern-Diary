@@ -22,6 +22,7 @@ BEGIN { $ENV{INTERN_DIARY_ENV} = 'local' };
 my %HANDLERS = (
     add_diary    => \&add_diary,
     list_diaries   => \&list_diaries,
+    delete_diary => \&delete_diary,
     add_entry    => \&add_entry,
     delete_entry => \&delete_entry,
 );
@@ -67,6 +68,18 @@ sub list_diaries {
     foreach my $diary (@$diaries) {
         print $diary->name . "\n";
     }
+}
+
+sub delete_diary {
+    my ($user, $name) = @_;
+
+    die 'name required' unless defined $name;
+
+    my $diary = Intern::Diary::Service::Diary->delete_diary($db, +{
+        name => $name
+    });
+
+    print 'Delete diary';
 }
 
 sub add_entry {
