@@ -23,6 +23,7 @@ use Class::Accessor::Lite::Lazy (
 
 use Intern::Diary::Request;
 use Intern::Diary::Config;
+use Intern::Diary::Service::User;
 
 ### Properties
 

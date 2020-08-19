@@ -18,7 +18,7 @@ sub add_post {
     my $name = $c->req->parameters->{name};
 
     Intern::Diary::Service::Diary->add_diary($c->dbh, {
-        user_name  => 'wafuwafu',
+        user_name  => $c->user->name,
         name  => $name,
     });
 
