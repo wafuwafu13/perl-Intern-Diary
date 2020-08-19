@@ -22,7 +22,10 @@ BEGIN { $ENV{INTERN_DIARY_ENV} = 'local' };
 my %HANDLERS = (
     add_diary    => \&add_diary,
     list_diaries   => \&list_diaries,
+    delete_diary => \&delete_diary,
     add_entry    => \&add_entry,
+    list_entries => \&list_entries,
+    edit_entry => \&edit_entry,
     delete_entry => \&delete_entry,
 );
 
@@ -50,7 +53,7 @@ sub add_diary {
     die 'name required' unless defined $name;
 
     my $diary = Intern::Diary::Service::Diary->add_diary($db, +{
-        user => $user,
+        user_name => $user->name,
         name => $name,
     });
 
@@ -69,6 +72,18 @@ sub list_diaries {
     }
 }
 
+sub delete_diary {
+    my ($user, $name) = @_;
+
+    die 'name required' unless defined $name;
+
+    my $diary = Intern::Diary::Service::Diary->delete_diary($db, +{
+        name => $name
+    });
+
+    print 'Delete diary';
+}
+
 sub add_entry {
     my ($user, $diary_id, $title, $body) = @_;
 
@@ -83,6 +98,38 @@ sub add_entry {
     });
 
     print 'Add entry';
+}
+
+sub list_entries {
+    my ($user, $diary_id) = @_;
+
+    my $entries = Intern::Diary::Service::Entry->find_entries_by_diary($db, +{
+        diary_id => $diary_id
+    });
+
+    foreach my $entry (@$entries) {
+        print $entry->title . "\n";
+        print $entry->body . "\n";
+        print "===========================\n";
+    }
+}
+
+sub edit_entry {
+    my ($user, $diary_id, $entry_id, $title, $body) = @_;
+
+    die 'diary_id required' unless defined $diary_id;
+    die 'entry_id required' unless defined $entry_id;
+    die 'title required' unless defined $title;
+    die 'body required' unless defined $body;
+
+    my $entry = Intern::Diary::Service::Entry->edit_entry($db, +{
+        diary_id => $diary_id,
+        entry_id => $entry_id,
+        title => $title,
+        body => $body,
+    });
+
+    print 'Edit entry';
 }
 
 sub delete_entry {

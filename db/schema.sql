@@ -11,7 +11,8 @@ CREATE TABLE diary (
     `user` VARCHAR(32) NOT NULL,
     `name` VARCHAR(32) NOT NULL,
     `created` TIMESTAMP NOT NULL,
-    PRIMARY KEY (diary_id)
+    PRIMARY KEY (diary_id),
+    UNIQUE KEY (name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE entry (

@@ -1,0 +1,12 @@
+[% INCLUDE "logo.html" %]
+
+<form method='POST' action="/[% uri_escape(diary_id) %]/add">
+    <h4>記事作成フォーム</h4>
+    <dl>
+      <dt>タイトル</dt>
+      <dd><input type="text" name="title"></dd>
+      <dt>本文</dt>
+      <dd><input type="text" name="body"></dd>
+    </dl>
+    <p><input type="submit"></p>
+</form>

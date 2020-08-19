@@ -1,5 +1,9 @@
-[% WRAPPER '_wrapper.tt' %]
-<div class=row>
-  Intern-Diary
-</div>
-[% END # WRAPPER %]
+[% IF diaries.size() %]
+    [% FOR diary IN diaries %]
+        <a href=/[% uri_escape(diary.diary_id) %]>[% diary.name %]</a>
+    [% END %]
+    [% INCLUDE "add.html" %]
+[% ELSE %]
+    <p>日記を始めましょう</p>
+    [% INCLUDE "add.html" %]
+[% END %]

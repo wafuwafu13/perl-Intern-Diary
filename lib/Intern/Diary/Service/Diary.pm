@@ -13,7 +13,7 @@ use Intern::Diary::Model::Diary;
 sub add_diary {
     my ($class, $db, $args) = @_;
 
-    my $user = $args->{user}->{name} // croak 'user required';
+    my $user = $args->{user_name} // croak 'user_name required';
     my $name = $args->{name} // croak 'name required';
 
     $db->query(q[
@@ -39,6 +39,18 @@ sub find_diaries_by_user {
     return [ map {
         Intern::Diary::Model::Diary->new($_)
     } @$rows ];
+}
+
+sub delete_diary {
+    my ($class, $db, $args) = @_;
+
+    my $name = $args->{name} // croak 'name required';
+
+    $db->query(q[
+        DELETE FROM diary
+          WHERE 
+            name = ?
+    ], $name);
 }
 
 1;
