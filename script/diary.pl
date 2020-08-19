@@ -24,6 +24,7 @@ my %HANDLERS = (
     list_diaries   => \&list_diaries,
     delete_diary => \&delete_diary,
     add_entry    => \&add_entry,
+    list_entries => \&list_entries,
     delete_entry => \&delete_entry,
 );
 
@@ -96,6 +97,20 @@ sub add_entry {
     });
 
     print 'Add entry';
+}
+
+sub list_entries {
+    my ($user, $diary_id) = @_;
+
+    my $entries = Intern::Diary::Service::Entry->find_entries_by_diary($db, +{
+        diary_id => $diary_id
+    });
+
+    foreach my $entry (@$entries) {
+        print $entry->title . "\n";
+        print $entry->body . "\n";
+        print "===========================\n";
+    };
 }
 
 sub delete_entry {
