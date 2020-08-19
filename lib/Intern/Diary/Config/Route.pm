@@ -19,7 +19,19 @@ sub make_router {
         connect '/add' => {
             engine => 'Diary',
             action => 'add_post',
-        } => { method => 'POST'}
+        } => { method => 'POST'};
+        connect '/{id}' => {
+            engine => 'Entry',
+            action => 'default',
+        };
+        connect '/{id}/add' => {
+            engine => 'Entry',
+            action => 'add_get',
+        } => { method => 'GET'};
+        connect '/{id}/add' => {
+            engine => 'Entry',
+            action => 'add_post',
+        } => { method => 'POST'};
     };
 }
 
