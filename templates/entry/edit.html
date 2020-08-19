@@ -1,0 +1,11 @@
+<h2>記事編集</h2>
+
+<form method='POST' action="/[% uri_escape(diary_id) %]/edit/[% uri_escape(entry_id) %]">
+    <dl>
+      <dt>タイトル</dt>
+      <dd><input type="text" name="title"></dd>
+      <dt>本文</dt>
+      <dd><input type="text" name="body"></dd>
+    </dl>
+    <p><input type="submit"></p>
+</form>

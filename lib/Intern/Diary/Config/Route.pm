@@ -32,6 +32,14 @@ sub make_router {
             engine => 'Entry',
             action => 'add_post',
         } => { method => 'POST'};
+        connect '/{diary_id}/edit/{entry_id}' => {
+            engine => 'Entry',
+            action => 'edit_get',
+        } => { method => 'GET'};
+        connect '/{diary_id}/edit/{entry_id}' => {
+            engine => 'Entry',
+            action => 'edit_post',
+        } => { method => 'POST'};
         connect '/{diary_id}/delete/{entry_id}' => {
             engine => 'Entry',
             action => 'delete',

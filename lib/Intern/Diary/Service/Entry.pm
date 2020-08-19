@@ -42,6 +42,23 @@ sub find_entries_by_diary {
     } @$rows ];
 }
 
+sub edit_entry {
+  my ($class, $db, $args) = @_;
+
+  my $diary_id = $args->{diary_id} // croak 'diary_id required';
+  my $entry_id = $args->{entry_id} // croak 'entry_id required';
+  my $title = $args->{title} // croak 'title required';
+  my $body = $args->{body} // croak 'body required';
+
+  $db->query(q[
+        UPDATE entry
+          SET 
+            title = ?, body = ? 
+          WHERE
+            diary_id = ? AND entry_id = ?
+    ], $title, $body, $diary_id, $entry_id);
+}
+
 sub delete_entry {
     my ($class, $db, $args) = @_;
 
