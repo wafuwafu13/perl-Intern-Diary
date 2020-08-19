@@ -25,6 +25,7 @@ my %HANDLERS = (
     delete_diary => \&delete_diary,
     add_entry    => \&add_entry,
     list_entries => \&list_entries,
+    edit_entry => \&edit_entry,
     delete_entry => \&delete_entry,
 );
 
@@ -111,6 +112,24 @@ sub list_entries {
         print $entry->body . "\n";
         print "===========================\n";
     };
+}
+
+sub edit_entry {
+    my ($user, $diary_id, $entry_id, $title, $body) = @_;
+
+    die 'diary_id required' unless defined $diary_id;
+    die 'entry_id required' unless defined $entry_id;
+    die 'title required' unless defined $title;
+    die 'body required' unless defined $body;
+
+    my $entry = Intern::Diary::Service::Entry->edit_entry($db, +{
+        diary_id => $diary_id,
+        entry_id => $entry_id,
+        title => $title,
+        body => $body,
+    });
+
+    print 'Edit entry';
 }
 
 sub delete_entry {
