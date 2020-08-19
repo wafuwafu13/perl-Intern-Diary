@@ -42,6 +42,25 @@ sub find_entries_by_diary {
     } @$rows ];
 }
 
+sub find_entry_by_id {
+    my ($class, $db, $args) = @_;
+
+    my $diary_id = $args->{diary_id} // croak 'diary_id required';
+    my $entry_id = $args->{entry_id} // croak 'entry_id required';
+
+    my ($sql, $bind) = SQL::NamedPlaceholder::bind_named(q[
+        SELECT * FROM entry
+        WHERE diary_id = :diary_id AND entry_id = :entry_id
+    ], {
+        diary_id => $diary_id,
+        entry_id => $entry_id,
+    });
+
+    my $entry = $db->select_row($sql, @$bind);
+   
+    return  Intern::Diary::Model::Entry->new($entry);
+}
+
 sub edit_entry {
   my ($class, $db, $args) = @_;
 

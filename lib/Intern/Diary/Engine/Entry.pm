@@ -53,9 +53,15 @@ sub edit_get {
     my $diary_id = $c->req->path_parameters->{diary_id};
     my $entry_id = $c->req->path_parameters->{entry_id};
 
+    my $entry = Intern::Diary::Service::Entry->find_entry_by_id($c->dbh, {
+        diary_id => $diary_id,
+        entry_id => $entry_id,
+    });
+
     $c->html('entry/edit.html', {
         diary_id => $diary_id,
         entry_id => $entry_id,
+        entry => $entry,
     });
 }
 

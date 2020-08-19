@@ -3,9 +3,9 @@
 <form method='POST' action="/[% uri_escape(diary_id) %]/edit/[% uri_escape(entry_id) %]">
     <dl>
       <dt>タイトル</dt>
-      <dd><input type="text" name="title"></dd>
+      <dd><input type="text" name="title" value="[% entry.title %]"></dd>
       <dt>本文</dt>
-      <dd><input type="text" name="body"></dd>
+      <dd><input type="text" name="body" value="[% entry.body %]"></dd>
     </dl>
     <p><input type="submit"></p>
 </form>
