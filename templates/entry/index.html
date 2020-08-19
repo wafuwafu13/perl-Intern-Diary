@@ -6,6 +6,7 @@
     <div>記事一覧</div>
     [% FOR entry IN entries %]
     <h2>[% entry.title %]</h2>
+    <a href="/[% uri_escape(diary_id) %]/delete/[% uri_escape(entry.entry_id) %]">削除</a>
     <p>[% entry.body %]</p>
     [% END %]
 [% END %]

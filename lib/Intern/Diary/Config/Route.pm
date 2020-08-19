@@ -32,6 +32,10 @@ sub make_router {
             engine => 'Entry',
             action => 'add_post',
         } => { method => 'POST'};
+        connect '/{diary_id}/delete/{entry_id}' => {
+            engine => 'Entry',
+            action => 'delete',
+        };
     };
 }
 

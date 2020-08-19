@@ -47,4 +47,18 @@ sub add_post {
     $c->res->redirect('/' . $diary_id);
 }
 
+sub delete {
+    my ($class, $c) = @_;
+
+    my $diary_id = $c->req->path_parameters->{diary_id};
+    my $entry_id = $c->req->path_parameters->{entry_id};
+
+    Intern::Diary::Service::Entry->delete_entry($c->dbh, {
+        diary_id => $diary_id,
+        entry_id => $entry_id,
+    });
+
+    $c->res->redirect('/' . $diary_id);
+}
+
 1;
