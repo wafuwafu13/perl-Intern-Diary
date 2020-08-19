@@ -1,13 +1,11 @@
-<form method="GET" action="/[% uri_escape(diary_id) %]/add">
-    <p><input type="submit" value="記事を追加"></p>
-</form>
+<a href="/[% uri_escape(diary_id) %]/add"><button type="button">記事を追加<button></a>
 
 [% IF entries.size() %]
     <div>記事一覧</div>
     [% FOR entry IN entries %]
-    <h2>[% entry.title %]</h2>
-    <a href="/[% uri_escape(diary_id) %]/edit/[% uri_escape(entry.entry_id) %]">編集</a>
-    <a href="/[% uri_escape(diary_id) %]/delete/[% uri_escape(entry.entry_id) %]">削除</a>
-    <p>[% entry.body %]</p>
+        <h2>[% entry.title %]</h2>
+        <a href="/[% uri_escape(diary_id) %]/edit/[% uri_escape(entry.entry_id) %]">編集</a>
+        <a href="/[% uri_escape(diary_id) %]/delete/[% uri_escape(entry.entry_id) %]">削除</a>
+        <p>[% entry.body %]</p>
     [% END %]
 [% END %]

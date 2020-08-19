@@ -22,7 +22,7 @@ sub add_post {
         name  => $name,
     });
 
-    $c->res->redirect('/')
+    $c->res->redirect('/');
 }
 
 1;
