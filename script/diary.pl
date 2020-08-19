@@ -53,7 +53,7 @@ sub add_diary {
     die 'name required' unless defined $name;
 
     my $diary = Intern::Diary::Service::Diary->add_diary($db, +{
-        user => $user,
+        user_name => $user->name,
         name => $name,
     });
 
