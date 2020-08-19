@@ -11,8 +11,13 @@ sub default {
 
     my $diary_id = $c->req->path_parameters->{id};
 
+    my $entries = Intern::Diary::Service::Entry->find_entries_by_diary($c->dbh, {
+        diary_id => $diary_id
+    });
+
     $c->html('entry/index.html', {
         diary_id => $diary_id,
+        entries => $entries,
     });
 }
 

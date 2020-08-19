@@ -2,5 +2,10 @@
     <p><input type="submit" value="記事を追加"></p>
 </form>
 
-<!-- TODO -->
-<div>記事一覧</div>
+[% IF entries.size() %]
+    <div>記事一覧</div>
+    [% FOR entry IN entries %]
+    <h2>[% entry.title %]</h2>
+    <p>[% entry.body %]</p>
+    [% END %]
+[% END %]
