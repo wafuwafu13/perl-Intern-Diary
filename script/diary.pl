@@ -111,7 +111,7 @@ sub list_entries {
         print $entry->title . "\n";
         print $entry->body . "\n";
         print "===========================\n";
-    };
+    }
 }
 
 sub edit_entry {
