@@ -10,6 +10,8 @@ use Class::Accessor::Lite (
         body
         diary_id
         entry_id
+        created
+        updated
     )],
     new => 1,
 );

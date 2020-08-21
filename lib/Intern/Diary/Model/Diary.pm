@@ -9,6 +9,7 @@ use Class::Accessor::Lite (
         user
         name
         diary_id
+        created
     )],
     new => 1,
 );
