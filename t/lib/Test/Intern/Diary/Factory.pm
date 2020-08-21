@@ -35,3 +35,21 @@ sub create_user {
         name => $name
     });
 }
+
+sub create_diary {
+    my %args = @_;
+    my $user = $args{user} // random_regex('test_user_\w{15}');
+    my $name = $args{name} // random_regex('test_name_\w{15}');
+    my $created = $args{created} // Intern::Diary::Util::now;
+
+    my $c = Intern::Diary::Context->new;
+    my $dbh = $c->dbh;
+    $dbh->query(q[
+        INSERT INTO user (user, name, created)
+          VALUES (?)
+    ], [ $user, $name, $created ]);
+
+    return Intern::Diary::Service::Diary->find_diaries_by_user($dbh, {
+        user => $user
+    });
+}
